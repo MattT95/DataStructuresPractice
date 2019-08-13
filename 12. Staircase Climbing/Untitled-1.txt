@@ -1,0 +1,47 @@
+
+Switch statements   
+    Description:
+        Long switch statement with loads of case specific logic
+    Problem:
+        Likely to change often
+        Could lead to violation of open closed principle 
+        When making a change, other classes should need to minimally change
+    Solving it:
+        Depending on the switch, look to isolate the change.
+            Push the switch statement down your dependency graph
+        Consider moving to a more polymorphic approach
+            if switch is to create objects, consider isolating into a factory (method or abstract factory)
+            if performing specific behavior consider a strategy pattern approach
+            if determining behavior based off state and doing state transitions, consider a state pattern approach
+
+Speculative Generality
+    Description:
+        Trying to make your component a Swiss Army Knife for the sake of the "future"
+    Problem:
+        The code is very complex, when only simple cases and specific code paths may be used
+        Hides dead logic
+        Due to the code being more complex, harder to maintain
+        "Our client might want to..."
+        "What if in the future..."
+        "Why are we even doing this?"
+    Solution:
+        Test-Drive your solution from the start
+        Write tests to cover supported cases + reduce the simpler logic
+        Could use TPP to support you here
+
+Inappropriate Intinmacy
+    Description
+        Members of classes that should be internal are exposed to the outside world
+        Other classes are dependant on these members
+    Problem
+        Implementation + state leaking to other clients of code => Tight Coupling
+        Hard to change
+        "Law of Demeter'
+    Solution
+        Prioritise staying as invisible as possible: Internal -> Private -> Public 
+        If a method is public, it should commonly be tied to some interface
+        If some state or behavior is largely required by another class, perhaps it is in the wrong place (consider moving to class)
+
+
+    
+
